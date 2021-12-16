@@ -1,25 +1,32 @@
-import './App.css';
+import React, { Component } from 'react'
+import Header from './components/Header'
+import Message from './components/Message'
 
-function App() {
-  console.log(window)
-  console.log(document)
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+  // Learn how to save state/variables
+  constructor(props) {
+    super(props)
+    this.state = {
+      message: '',
+    }
+    this.handleMessage = this.handleMessage.bind(this)
+  }
+
+  // Functions go here
+  handleMessage(text) {
+    this.setState({
+      message: text,
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <Header message={this.state.message} />
+        <Message message={this.state.message} handleMessage={this.handleMessage} />
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
